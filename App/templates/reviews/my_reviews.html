@@ -1,0 +1,63 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4"><i class="fas fa-star me-2"></i>My Reviews</h1>
+
+    {% if reviews %}
+        <div class="list-group">
+            {% for review in reviews %}
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{ review.listing.title }}</h5>
+                        <small>{{ review.created_at.strftime('%B %d, %Y') }}</small>
+                    </div>
+                    <div class="mb-2 stars">
+                        {% for i in range(5) %}
+                            {% if i < review.rating %}
+                                <i class="fas fa-star text-warning"></i>
+                            {% else %}
+                                <i class="far fa-star"></i>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <p class="mb-1">{{ review.content }}</p>
+                    {% if review.pros or review.cons %}
+                        <div class="row mt-2">
+                            {% if review.pros %}
+                                <div class="col-md-6">
+                                    <h6 class="text-success"><i class="fas fa-thumbs-up me-1"></i>Pros</h6>
+                                    <p class="small">{{ review.pros }}</p>
+                                </div>
+                            {% endif %}
+                            {% if review.cons %}
+                                <div class="col-md-6">
+                                    <h6 class="text-danger"><i class="fas fa-thumbs-down me-1"></i>Cons</h6>
+                                    <p class="small">{{ review.cons }}</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                    <div class="mt-2">
+                        <a href="{{ url_for('listing_controller.detail', apartment_id=review.listing.id) }}" class="btn btn-sm btn-outline-primary">
+                            View Listing
+                        </a>
+                        <a href="{{ url_for('review_controller.edit', review_id=review.id) }}" class="btn btn-sm btn-outline-secondary ms-2">
+                            Edit Review
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-4">
+            <i class="fas fa-comment fa-4x text-muted mb-3"></i>
+            <p>You haven't written any reviews yet.</p>
+            <a href="{{ url_for('listing_controller.list_apartments') }}" class="btn btn-primary">
+                <i class="fas fa-search me-1"></i> Find Apartments to Review
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -9,7 +9,7 @@
     <!-- Search form -->
     <div class="card mb-4">
         <div class="card-body">
-            <form method="GET" action="{{ url_for('search.search') }}" class="row g-3">
+            <form method="GET" action="{{ url_for('search_controller.search') }}" class="row g-3">
                 <div class="col-md-6">
                     <label for="location" class="form-label">Location</label>
                     <input type="text" class="form-control" id="location" name="location" value="{{ request.args.get('location', '') }}" placeholder="City, State, or ZIP">
