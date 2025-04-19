@@ -1,14 +1,19 @@
 {% extends "layout.html" %}
-{% block title %}{{title}}{% endblock %}
-{% block page %}{{title}}{% endblock %}
-
-{{ super() }}
 
 {% block content %}
-<div class="container">
-    <div class="row" style="margin-top: 10%;">
-        <div class="col s12 m10 offset-m1">
-            <p>{{message}}</p>
+<div class="container py-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">{{ title }}</h3>
+        </div>
+        <div class="card-body">
+            <p class="lead">{{ message }}</p>
+            
+            <div class="mt-4">
+                <a href="{{ url_for('index_views.index') }}" class="btn btn-primary">
+                    <i class="fas fa-home me-1"></i> Return to Home
+                </a>
+            </div>
         </div>
     </div>
 </div>

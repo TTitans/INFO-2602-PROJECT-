@@ -1,0 +1,173 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <nav aria-label="breadcrumb" class="mt-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('index_views.index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('listing.detail', apartment_id=listing.id) }}">{{ listing.title }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Write a Review</li>
+        </ol>
+    </nav>
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mb-4">
+                <i class="fas fa-star me-2"></i>Write a Review
+            </h1>
+            
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">{{ listing.title }}</h5>
+                    <p class="text-muted mb-0">{{ listing.address }}, {{ listing.city }}, {{ listing.state }}</p>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('review.create', listing_id=listing.id) }}">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="mb-4">
+                            <label class="form-label">{{ form.rating.label }}</label>
+                            <div class="rating-input">
+                                {% if form.rating.errors %}
+                                    <div class="is-invalid"></div>
+                                    <div class="invalid-feedback">
+                                        {% for error in form.rating.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                
+                                <div class="btn-group w-100 mb-2" role="group">
+                                    {% for choice in form.rating %}
+                                        <input type="radio" class="btn-check" name="rating" id="{{ choice.id }}" value="{{ choice.data }}" {% if choice.checked %}checked{% endif %}>
+                                        <label class="btn btn-outline-warning" for="{{ choice.id }}">
+                                            {{ choice.label.text }}
+                                        </label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.lease_period.label(class="form-label") }}
+                            {% if form.lease_period.errors %}
+                                {{ form.lease_period(class="form-control is-invalid", placeholder="e.g. Jan 2020 - Dec 2021") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.lease_period.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.lease_period(class="form-control", placeholder="e.g. Jan 2020 - Dec 2021") }}
+                            {% endif %}
+                            <div class="form-text">When did you live at this property?</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.content.label(class="form-label") }}
+                            {% if form.content.errors %}
+                                {{ form.content(class="form-control is-invalid", rows="5", placeholder="Share your overall experience living here...") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.content.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.content(class="form-control", rows="5", placeholder="Share your overall experience living here...") }}
+                            {% endif %}
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.pros.label(class="form-label") }}
+                                {% if form.pros.errors %}
+                                    {{ form.pros(class="form-control is-invalid", rows="3", placeholder="What did you like about this apartment?") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.pros.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.pros(class="form-control", rows="3", placeholder="What did you like about this apartment?") }}
+                                {% endif %}
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                {{ form.cons.label(class="form-label") }}
+                                {% if form.cons.errors %}
+                                    {{ form.cons(class="form-control is-invalid", rows="3", placeholder="What could be improved?") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.cons.errors %}
+                                            {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.cons(class="form-control", rows="3", placeholder="What could be improved?") }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ url_for('listing.detail', apartment_id=listing.id) }}" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card mb-4 mt-5">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Tips for a Helpful Review</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <strong>Be specific:</strong> Include details about your living experience.
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <strong>Be balanced:</strong> Share both positive and negative aspects.
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <strong>Be honest:</strong> Your genuine experience helps others make informed decisions.
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <strong>Be respectful:</strong> Keep your review constructive and considerate.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Change star rating colors based on selection
+    document.addEventListener("DOMContentLoaded", function() {
+        const ratingInputs = document.querySelectorAll('input[name="rating"]');
+        ratingInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                // Reset all buttons
+                document.querySelectorAll('.btn-check + .btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Set active state up to selected rating
+                const selectedValue = parseInt(this.value);
+                ratingInputs.forEach(inp => {
+                    if (parseInt(inp.value) <= selectedValue) {
+                        inp.nextElementSibling.classList.add('active');
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

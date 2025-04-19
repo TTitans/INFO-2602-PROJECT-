@@ -1,0 +1,141 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">
+        <i class="fas fa-building me-2"></i>Browse Apartments
+    </h1>
+    
+    <!-- Filter options -->
+    <div class="mb-4">
+        <form method="GET" action="{{ url_for('search.search') }}" class="card">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="location" placeholder="City, State, or ZIP">
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select" name="bedrooms">
+                            <option value="">Any Bedrooms</option>
+                            <option value="1">1+ Beds</option>
+                            <option value="2">2+ Beds</option>
+                            <option value="3">3+ Beds</option>
+                            <option value="4">4+ Beds</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select class="form-select" name="bathrooms">
+                            <option value="">Any Bathrooms</option>
+                            <option value="1">1+ Baths</option>
+                            <option value="1.5">1.5+ Baths</option>
+                            <option value="2">2+ Baths</option>
+                            <option value="3">3+ Baths</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="number" class="form-control" name="min_price" placeholder="Min Price" min="0">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Apartment listings -->
+    <div class="row">
+        {% if listings.items %}
+            {% for listing in listings.items %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ listing.title }}</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fs-5 fw-bold text-primary">${{ "%.2f"|format(listing.price) }}/month</span>
+                                <div class="stars">
+                                    {% set avg_rating = listing.average_rating() %}
+                                    {% for i in range(5) %}
+                                        {% if i < avg_rating|int %}
+                                            <i class="fas fa-star"></i>
+                                        {% elif i < avg_rating|round(0, 'ceil') and avg_rating != avg_rating|int %}
+                                            <i class="fas fa-star-half-alt"></i>
+                                        {% else %}
+                                            <i class="far fa-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <small class="text-muted">({{ listing.reviews|length }})</small>
+                                </div>
+                            </div>
+                            <p class="card-text text-muted">{{ listing.city }}, {{ listing.state }}</p>
+                            <div class="d-flex mb-3">
+                                <span class="me-3"><i class="fas fa-bed me-1"></i> {{ listing.bedrooms }}</span>
+                                <span class="me-3"><i class="fas fa-bath me-1"></i> {{ listing.bathrooms }}</span>
+                                <span><i class="fas fa-ruler-combined me-1"></i> {{ listing.square_feet }} sqft</span>
+                            </div>
+                            <p class="card-text mb-4">{{ listing.description|truncate(100) }}</p>
+                            <a href="{{ url_for('listing.detail', apartment_id=listing.id) }}" class="btn btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-4">
+                <nav>
+                    <ul class="pagination">
+                        {% if listings.has_prev %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('listing.list_apartments', page=listings.prev_num) }}">Previous</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                        {% endif %}
+                        
+                        {% for page_num in listings.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                            {% if page_num %}
+                                {% if page_num == listings.page %}
+                                    <li class="page-item active">
+                                        <span class="page-link">{{ page_num }}</span>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ url_for('listing.list_apartments', page=page_num) }}">{{ page_num }}</a>
+                                    </li>
+                                {% endif %}
+                            {% else %}
+                                <li class="page-item disabled">
+                                    <span class="page-link">...</span>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if listings.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('listing.list_apartments', page=listings.next_num) }}">Next</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link">Next</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-building fa-5x text-muted mb-3"></i>
+                <h3>No Apartments Found</h3>
+                <p class="text-muted">There are no apartment listings available at this time.</p>
+                {% if current_user.is_authenticated and current_user.user_type == 'landlord' %}
+                    <a href="{{ url_for('listing.create') }}" class="btn btn-primary mt-3">
+                        <i class="fas fa-plus me-1"></i> Add Your Listing
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

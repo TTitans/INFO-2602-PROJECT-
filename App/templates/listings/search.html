@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">
+        <i class="fas fa-search me-2"></i>Search Apartments
+    </h1>
+    
+    <!-- Search form -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="GET" action="{{ url_for('search.search') }}" class="row g-3">
+                <div class="col-md-6">
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="location" name="location" value="{{ request.args.get('location', '') }}" placeholder="City, State, or ZIP">
+                </div>
+                
+                <div class="col-md-3">
+                    <label for="min_price" class="form-label">Min Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" id="min_price" name="min_price" value="{{ request.args.get('min_price', '') }}" min="0" step="50" placeholder="Min">
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <label for="max_price" class="form-label">Max Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" id="max_price" name="max_price" value="{{ request.args.get('max_price', '') }}" min="0" step="50" placeholder="Max">
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <label for="bedrooms" class="form-label">Bedrooms</label>
+                    <select class="form-select" id="bedrooms" name="bedrooms">
+                        <option value="" {% if not request.args.get('bedrooms') %}selected{% endif %}>Any</option>
+                        <option value="1" {% if request.args.get('bedrooms') == '1' %}selected{% endif %}>1+</option>
+                        <option value="2" {% if request.args.get('bedrooms') == '2' %}selected{% endif %}>2+</option>
+                        <option value="3" {% if request.args.get('bedrooms') == '3' %}selected{% endif %}>3+</option>
+                        <option value="4" {% if request.args.get('bedrooms') == '4' %}selected{% endif %}>4+</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-3">
+                    <label for="bathrooms" class="form-label">Bathrooms</label>
+                    <select class="form-select" id="bathrooms" name="bathrooms">
+                        <option value="" {% if not request.args.get('bathrooms') %}selected{% endif %}>Any</option>
+                        <option value="1" {% if request.args.get('bathrooms') == '1' %}selected{% endif %}>1+</option>
+                        <option value="1.5" {% if request.args.get('bathrooms') == '1.5' %}selected{% endif %}>1.5+</option>
+                        <option value="2" {% if request.args.get('bathrooms') == '2' %}selected{% endif %}>2+</option>
+                        <option value="3" {% if request.args.get('bathrooms') == '3' %}selected{% endif %}>3+</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label">Amenities</label>
+                    <div class="row">
+                        {% for choice in form.amenities %}
+                            <div class="col-md-4 mb-2">
+                                <div class="form-check">
+                                    {{ choice(class="form-check-input") }}
+                                    {{ choice.label(class="form-check-label") }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="fas fa-search me-1"></i> Search
+                    </button>
+                    <a href="{{ url_for('search.search') }}" class="btn btn-outline-secondary px-4">Reset</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Search results -->
+    <div class="mb-4">
+        <h2>Results <small class="text-muted">({{ total }} found)</small></h2>
+    </div>
+    
+    <div class="row">
+        {% if results %}
+            {% for listing in results %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ listing.title }}</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="fs-5 fw-bold text-primary">${{ "%.2f"|format(listing.price) }}/month</span>
+                                <div class="stars">
+                                    {% set avg_rating = listing.average_rating() %}
+                                    {% for i in range(5) %}
+                                        {% if i < avg_rating|int %}
+                                            <i class="fas fa-star"></i>
+                                        {% elif i < avg_rating|round(0, 'ceil') and avg_rating != avg_rating|int %}
+                                            <i class="fas fa-star-half-alt"></i>
+                                        {% else %}
+                                            <i class="far fa-star"></i>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <small class="text-muted">({{ listing.reviews|length }})</small>
+                                </div>
+                            </div>
+                            <p class="card-text text-muted">{{ listing.city }}, {{ listing.state }}</p>
+                            <div class="d-flex mb-3">
+                                <span class="me-3"><i class="fas fa-bed me-1"></i> {{ listing.bedrooms }}</span>
+                                <span class="me-3"><i class="fas fa-bath me-1"></i> {{ listing.bathrooms }}</span>
+                                <span><i class="fas fa-ruler-combined me-1"></i> {{ listing.square_feet }} sqft</span>
+                            </div>
+                            <p class="card-text mb-4">{{ listing.description|truncate(100) }}</p>
+                            <a href="{{ url_for('listing.detail', apartment_id=listing.id) }}" class="btn btn-outline-primary w-100">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-search fa-5x text-muted mb-3"></i>
+                <h3>No Results Found</h3>
+                <p class="text-muted">Try adjusting your search criteria to find more apartments.</p>
+                <a href="{{ url_for('search.search') }}" class="btn btn-primary mt-3">Reset Search</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
