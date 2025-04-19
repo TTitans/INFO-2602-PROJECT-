@@ -71,8 +71,8 @@ def create_app(overrides={}):
     # Set secret key
     app.secret_key = os.environ.get("SESSION_SECRET", "apartment-reviews-secret-key")
     
-    # Configure database
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+    # Configure database with fallback to SQLite
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", "sqlite:///temp-database.db")
     app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
         "pool_recycle": 300,
         "pool_pre_ping": True,
