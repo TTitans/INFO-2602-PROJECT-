@@ -16,3 +16,4 @@ Flask-Admin==1.6.1
 flask-login
 flask-wtf
 flask-reuploaded
+email_validator
