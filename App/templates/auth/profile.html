@@ -1,11 +1,7 @@
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <div class="container">
-    <h1 class="mb-4">
-        <i class="fas fa-user-circle me-2"></i>Your Profile
-    </h1>
-    
+    <h1 class="mb-4"><i class="fas fa-user-circle me-2"></i>Your Profile</h1>
+
     <div class="row">
         <div class="col-md-4">
             <div class="card mb-4">
@@ -23,22 +19,30 @@
                     <div class="mb-3">
                         <span class="badge bg-primary">
                             {% if current_user.user_type == 'landlord' %}
-                                <i class="fas fa-user-tie me-1"></i> Landlord
-                            {% elif current_user.user_type == 'tenant' %}
-                                <i class="fas fa-user me-1"></i> Tenant
-                            {% else %}
-                                <i class="fas fa-user-shield me-1"></i> Admin
-                            {% endif %}
+                            <i class="fas fa-user-tie me-1"></i> Landlord {%
+                            elif current_user.user_type == 'tenant' %}
+                            <i class="fas fa-user me-1"></i> Tenant {% else %}
+                            <i class="fas fa-user-shield me-1"></i> Admin {%
+                            endif %}
                         </span>
-                        
+
                         {% if current_user.is_verified %}
-                            <span class="badge bg-success"><i class="fas fa-check me-1"></i> Verified</span>
+                        <span class="badge bg-success"
+                            ><i class="fas fa-check me-1"></i> Verified</span
+                        >
                         {% else %}
-                            <span class="badge bg-warning"><i class="fas fa-exclamation-triangle me-1"></i> Unverified</span>
+                        <span class="badge bg-warning"
+                            ><i class="fas fa-exclamation-triangle me-1"></i>
+                            Unverified</span
+                        >
                         {% endif %}
                     </div>
                     <div class="text-muted">
-                        <small>Member since: {{ current_user.created_at.strftime('%B %d, %Y') }}</small>
+                        <small
+                            >Member since: {{
+                            current_user.created_at.strftime('%B %d, %Y')
+                            }}</small
+                        >
                     </div>
                 </div>
                 <div class="card-footer">
@@ -48,112 +52,156 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-md-8">
             <!-- User-specific content based on user type -->
             {% if current_user.user_type == 'landlord' %}
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Your Listings</h5>
-                        <a href="{{ url_for('listing.create') }}" class="btn btn-sm btn-light">
-                            <i class="fas fa-plus me-1"></i> Add New
+            <div class="card mb-4">
+                <div
+                    class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+                >
+                    <h5 class="mb-0">Your Listings</h5>
+                    <a
+                        href="{{ url_for('listing.create') }}"
+                        class="btn btn-sm btn-light"
+                    >
+                        <i class="fas fa-plus me-1"></i> Add New
+                    </a>
+                </div>
+                <div class="card-body">
+                    {% if current_user.listings %}
+                    <div class="list-group">
+                        {% for listing in current_user.listings %}
+                        <a
+                            href="{{ url_for('listing.detail', apartment_id=listing.id) }}"
+                            class="list-group-item list-group-item-action"
+                        >
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ listing.title }}</h5>
+                                <small
+                                    >${{ "%.2f"|format(listing.price)
+                                    }}/month</small
+                                >
+                            </div>
+                            <p class="mb-1 text-muted">
+                                {{ listing.city }}, {{ listing.state }}
+                            </p>
+                            <small>
+                                <i class="fas fa-bed me-1"></i> {{
+                                listing.bedrooms }} |
+                                <i class="fas fa-bath me-1"></i> {{
+                                listing.bathrooms }} |
+                                <i class="fas fa-star me-1 text-warning"></i> {{
+                                "%.1f"|format(listing.average_rating()) }} ({{
+                                listing.reviews|length }})
+                            </small>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    <div class="mt-3">
+                        <a
+                            href="{{ url_for('listing.my_listings') }}"
+                            class="btn btn-outline-primary"
+                        >
+                            View All Listings
                         </a>
                     </div>
-                    <div class="card-body">
-                        {% if current_user.listings %}
-                            <div class="list-group">
-                                {% for listing in current_user.listings %}
-                                    <a href="{{ url_for('listing.detail', apartment_id=listing.id) }}" class="list-group-item list-group-item-action">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">{{ listing.title }}</h5>
-                                            <small>${{ "%.2f"|format(listing.price) }}/month</small>
-                                        </div>
-                                        <p class="mb-1 text-muted">{{ listing.city }}, {{ listing.state }}</p>
-                                        <small>
-                                            <i class="fas fa-bed me-1"></i> {{ listing.bedrooms }} |
-                                            <i class="fas fa-bath me-1"></i> {{ listing.bathrooms }} |
-                                            <i class="fas fa-star me-1 text-warning"></i> {{ "%.1f"|format(listing.average_rating()) }} ({{ listing.reviews|length }})
-                                        </small>
-                                    </a>
-                                {% endfor %}
-                            </div>
-                            <div class="mt-3">
-                                <a href="{{ url_for('listing.my_listings') }}" class="btn btn-outline-primary">
-                                    View All Listings
-                                </a>
-                            </div>
-                        {% else %}
-                            <div class="text-center py-4">
-                                <i class="fas fa-building fa-4x text-muted mb-3"></i>
-                                <p>You haven't created any listings yet.</p>
-                                <a href="{{ url_for('listing.create') }}" class="btn btn-primary">
-                                    <i class="fas fa-plus me-1"></i> Create Your First Listing
-                                </a>
-                            </div>
-                        {% endif %}
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-building fa-4x text-muted mb-3"></i>
+                        <p>You haven't created any listings yet.</p>
+                        <a
+                            href="{{ url_for('listing.create') }}"
+                            class="btn btn-primary"
+                        >
+                            <i class="fas fa-plus me-1"></i> Create Your First
+                            Listing
+                        </a>
                     </div>
+                    {% endif %}
                 </div>
+            </div>
             {% elif current_user.user_type == 'tenant' %}
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0">Your Reviews</h5>
-                    </div>
-                    <div class="card-body">
-                        {% if current_user.reviews %}
-                            <div class="list-group">
-                                {% for review in current_user.reviews %}
-                                    <div class="list-group-item">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">{{ review.listing.title }}</h5>
-                                            <small>{{ review.created_at.strftime('%B %d, %Y') }}</small>
-                                        </div>
-                                        <div class="mb-2 stars">
-                                            {% for i in range(5) %}
-                                                {% if i < review.rating %}
-                                                    <i class="fas fa-star"></i>
-                                                {% else %}
-                                                    <i class="far fa-star"></i>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </div>
-                                        <p class="mb-1">{{ review.content }}</p>
-                                        <div class="d-flex justify-content-end mt-2">
-                                            <a href="{{ url_for('listing.detail', apartment_id=review.listing.id) }}" class="btn btn-sm btn-outline-primary me-2">
-                                                View Listing
-                                            </a>
-                                            <a href="{{ url_for('review.edit', review_id=review.id) }}" class="btn btn-sm btn-outline-secondary">
-                                                Edit Review
-                                            </a>
-                                        </div>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                            <div class="mt-3">
-                                <a href="{{ url_for('review.my_reviews') }}" class="btn btn-outline-primary">
-                                    View All Reviews
-                                </a>
-                            </div>
-                        {% else %}
-                            <div class="text-center py-4">
-                                <i class="fas fa-comment fa-4x text-muted mb-3"></i>
-                                <p>You haven't written any reviews yet.</p>
-                                <a href="{{ url_for('listing.list_apartments') }}" class="btn btn-primary">
-                                    <i class="fas fa-search me-1"></i> Find Apartments to Review
-                                </a>
-                            </div>
-                        {% endif %}
-                    </div>
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Your Reviews</h5>
                 </div>
-                
-                {% if not current_user.is_verified %}
-                    <div class="alert alert-warning">
-                        <h5><i class="fas fa-exclamation-triangle me-2"></i>Verification Required</h5>
-                        <p>Your tenant account needs to be verified before you can submit apartment reviews. 
-                           This helps ensure that all reviews come from real tenants who have lived in the apartments.</p>
-                        <a href="#" class="btn btn-warning">Request Verification</a>
+                <div class="card-body">
+                    {% if current_user.reviews %}
+                    <div class="list-group">
+                        {% for review in current_user.reviews %}
+                        <div class="list-group-item">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ review.listing.title }}</h5>
+                                <small
+                                    >{{ review.created_at.strftime('%B %d, %Y')
+                                    }}</small
+                                >
+                            </div>
+                            <div class="mb-2 stars">
+                                {% for i in range(5) %} {% if i < review.rating
+                                %}
+                                <i class="fas fa-star"></i>
+                                {% else %}
+                                <i class="far fa-star"></i>
+                                {% endif %} {% endfor %}
+                            </div>
+                            <p class="mb-1">{{ review.content }}</p>
+                            <div class="d-flex justify-content-end mt-2">
+                                <a
+                                    href="{{ url_for('listing.detail', apartment_id=review.listing.id) }}"
+                                    class="btn btn-sm btn-outline-primary me-2"
+                                >
+                                    View Listing
+                                </a>
+                                <a
+                                    href="{{ url_for('review.edit', review_id=review.id) }}"
+                                    class="btn btn-sm btn-outline-secondary"
+                                >
+                                    Edit Review
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
-                {% endif %}
-            {% endif %}
+                    <div class="mt-3">
+                        <a
+                            href="{{ url_for('review.my_reviews') }}"
+                            class="btn btn-outline-primary"
+                        >
+                            View All Reviews
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-comment fa-4x text-muted mb-3"></i>
+                        <p>You haven't written any reviews yet.</p>
+                        <a
+                            href="{{ url_for('listing.list_apartments') }}"
+                            class="btn btn-primary"
+                        >
+                            <i class="fas fa-search me-1"></i> Find Apartments
+                            to Review
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {% if not current_user.is_verified %}
+            <div class="alert alert-warning">
+                <h5>
+                    <i class="fas fa-exclamation-triangle me-2"></i>Verification
+                    Required
+                </h5>
+                <p>
+                    Your tenant account needs to be verified before you can
+                    submit apartment reviews. This helps ensure that all reviews
+                    come from real tenants who have lived in the apartments.
+                </p>
+                <a href="#" class="btn btn-warning">Request Verification</a>
+            </div>
+            {% endif %} {% endif %}
         </div>
     </div>
 </div>

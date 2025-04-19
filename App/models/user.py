@@ -19,11 +19,11 @@ class User(UserMixin, db.Model):
     user_type = db.Column(db.String(20), nullable=False)  # 'landlord' or 'tenant'
     is_verified = db.Column(db.Boolean, default=False)  # For tenants verification
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    
+
     # Relationships
     listings = db.relationship('Listing', backref='owner', lazy=True)
     reviews = db.relationship('Review', backref='author', lazy=True)
-    
+
     def __init__(self, username, email, password, user_type):
         self.username = username
         self.email = email
@@ -33,15 +33,15 @@ class User(UserMixin, db.Model):
 
     def get_json(self):
         return {'id': self.id, 'username': self.username, 'email': self.email, 'user_type': self.user_type}
-    
+
     def set_password(self, password):
         """Create hashed password."""
         self.password_hash = generate_password_hash(password)
-    
+
     def check_password(self, password):
         """Check hashed password."""
         return check_password_hash(self.password_hash, password)
-    
+
     def __repr__(self):
         return f'<User {self.username}>'
 
@@ -62,20 +62,20 @@ class Listing(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     owner_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
+
     # Relationships
     reviews = db.relationship('Review', backref='listing', lazy=True, cascade="all, delete-orphan")
     amenities = db.relationship('Amenity', secondary=listing_amenities, lazy='subquery',
                                backref=db.backref('listings', lazy=True))
-    
+
     def __repr__(self):
         return f'<Listing {self.title}>'
-    
+
     def average_rating(self):
         if not self.reviews:
             return 0
         return sum(review.rating for review in self.reviews) / len(self.reviews)
-    
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -99,7 +99,7 @@ class Amenity(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False, unique=True)
     icon = db.Column(db.String(100), nullable=False)  # Font Awesome icon class
-    
+
     def __repr__(self):
         return f'<Amenity {self.name}>'
 
@@ -115,7 +115,7 @@ class Review(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     listing_id = db.Column(db.Integer, db.ForeignKey('listing.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
+
     def __repr__(self):
         return f'<Review {self.id} for Listing {self.listing_id}>'
 
