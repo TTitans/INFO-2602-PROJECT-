@@ -1,0 +1,85 @@
+ Environment updated. Reloading shell...
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/bin/flask", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/nix/store/pw25nkfnjzxfmjlynggnikiwzj9n0ww5-python3.12-flask-3.0.3/lib/python3.12/site-packages/flask/cli.py", line 1105, in main
+    cli.main()
+  File "/nix/store/ihx61lakpx3zvjbw2hzk1xzicczh9fja-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/nix/store/ihx61lakpx3zvjbw2hzk1xzicczh9fja-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/ihx61lakpx3zvjbw2hzk1xzicczh9fja-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/ihx61lakpx3zvjbw2hzk1xzicczh9fja-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/ihx61lakpx3zvjbw2hzk1xzicczh9fja-python3.12-click-8.1.7/lib/python3.12/site-packages/click/decorators.py", line 92, in new_func
+    return ctx.invoke(f, obj, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/ihx61lakpx3zvjbw2hzk1xzicczh9fja-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/pw25nkfnjzxfmjlynggnikiwzj9n0ww5-python3.12-flask-3.0.3/lib/python3.12/site-packages/flask/cli.py", line 953, in run_command
+    raise e from None
+  File "/nix/store/pw25nkfnjzxfmjlynggnikiwzj9n0ww5-python3.12-flask-3.0.3/lib/python3.12/site-packages/flask/cli.py", line 937, in run_command
+    app: WSGIApplication = info.load_app()
+                           ^^^^^^^^^^^^^^^
+  File "/nix/store/pw25nkfnjzxfmjlynggnikiwzj9n0ww5-python3.12-flask-3.0.3/lib/python3.12/site-packages/flask/cli.py", line 335, in load_app
+    app = locate_app(import_name, name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/pw25nkfnjzxfmjlynggnikiwzj9n0ww5-python3.12-flask-3.0.3/lib/python3.12/site-packages/flask/cli.py", line 245, in locate_app
+    __import__(module_name)
+  File "/home/runner/workspace/wsgi.py", line 13, in <module>
+    app = create_app()
+          ^^^^^^^^^^^^
+  File "/home/runner/workspace/App/main.py", line 121, in create_app
+    initialize()
+  File "/home/runner/workspace/App/controllers/initialize.py", line 39, in initialize
+    admin = User.query.filter_by(email='admin@apartmentreviews.com').first()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2759, in first
+    return self.limit(1)._iter().first()  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2858, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1416, in execute
+    return meth(
+           ^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1638, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1843, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1983, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2352, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1964, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 945, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.email
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.user_type AS user_user_type, user.is_verified AS user_is_verified, user.created_at AS user_created_at 
+FROM user 
+WHERE user.email = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('admin@apartmentreviews.com', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
