@@ -1,3 +1,146 @@
+/* Custom styles for HomeRental */
+
+/* Custom color variables */
+:root {
+  --oxford-blue: #002147;
+  --light-blue-background: #F0F9F9;
+}
+
+/* Sticky footer styles */
 html {
-    padding: 0;
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 340px; /* Margin bottom by footer height */
+  background-color: var(--light-blue-background);
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--oxford-blue) !important;
+  color: white;
+}
+
+footer a.text-light, footer a.text-light:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-decoration: none;
+}
+
+footer a.text-light:hover {
+  text-decoration: underline;
+}
+
+/* Property card hover effect */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom badge styling */
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Custom form styling */
+.form-control:focus, .form-select:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Amenities list styling */
+.amenities-list i {
+  width: 20px;
+  text-align: center;
+  margin-right: 8px;
+}
+
+/* Property detail page */
+.sticky-top {
+  top: 20px;
+}
+
+/* Add some spacing in admin forms */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+/* Custom pagination styling */
+.page-link {
+  color: var(--bs-primary);
+}
+
+.page-item.active .page-link {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+/* Breadcrumb styling */
+.breadcrumb {
+  background-color: transparent;
+  padding: 0.75rem 0;
+}
+
+.breadcrumb-item a {
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+/* Hero section styling */
+.hero-section {
+  background-color: var(--bs-dark);
+  padding: 5rem 0;
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+}
+
+/* Custom styles for navbar */
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: var(--oxford-blue) !important;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+  color: white !important;
+}
+
+.navbar-nav .nav-link.active {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: bold;
+}
+
+/* Custom styles for form inputs */
+textarea {
+  resize: none;
+}
+
+/* Favorite button styling */
+.btn-favorite {
+  color: var(--bs-danger);
+  border-color: var(--bs-danger);
+}
+
+.btn-favorite:hover {
+  background-color: var(--bs-danger);
+  color: white;
+}
+
+/* Property feature icons */
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--bs-primary);
 }

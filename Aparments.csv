@@ -1,0 +1,101 @@
+Listing ID	Price	Location	Room	Type	Property Type	Land Area	Floor Area	Furnish
+1	$1,300	Port of Spain	2 Bedroom	Studio	Residential	1005 sq ft	603 sq ft	Unfurnished
+2	$2,000	San Fernando	3 Bedroom	Apartment	Residential	1010 sq ft	606 sq ft	Unfurnished
+3	$1,500	Arima	1 Bedroom	Studio	Residential	1015 sq ft	609 sq ft	Fully Furnished
+4	$2,000	Chaguanas	2 Bedroom	Apartment	Residential	1020 sq ft	612 sq ft	Unfurnished
+5	$3,000	Curepe	3 Bedroom	Studio	Residential	1025 sq ft	615 sq ft	Unfurnished
+6	$1,800	St. Augustine	1 Bedroom	Apartment	Residential	1030 sq ft	618 sq ft	Fully Furnished
+7	$2,500	Diego Martin	2 Bedroom	Studio	Residential	1035 sq ft	621 sq ft	Unfurnished
+8	$3,000	Maraval	3 Bedroom	Apartment	Residential	1040 sq ft	624 sq ft	Unfurnished
+9	$2,000	Tunapuna	1 Bedroom	Studio	Residential	1045 sq ft	627 sq ft	Fully Furnished
+10	$2,800	Trincity	2 Bedroom	Apartment	Residential	1050 sq ft	630 sq ft	Unfurnished
+11	$2,500	Point Fortin	3 Bedroom	Studio	Residential	1055 sq ft	633 sq ft	Unfurnished
+12	$2,800	Mayaro	1 Bedroom	Apartment	Residential	1060 sq ft	636 sq ft	Fully Furnished
+13	$2,000	Sangre Grande	2 Bedroom	Studio	Residential	1065 sq ft	639 sq ft	Unfurnished
+14	$3,000	Couva	3 Bedroom	Apartment	Residential	1070 sq ft	642 sq ft	Unfurnished
+15	$1,500	Princes Town	1 Bedroom	Studio	Residential	1075 sq ft	645 sq ft	Fully Furnished
+16	$2,000	Rio Claro	2 Bedroom	Apartment	Residential	1080 sq ft	648 sq ft	Unfurnished
+17	$3,000	Gasparillo	3 Bedroom	Studio	Residential	1085 sq ft	651 sq ft	Unfurnished
+18	$1,500	Barrackpore	1 Bedroom	Apartment	Residential	1090 sq ft	654 sq ft	Fully Furnished
+19	$2,500	Caroni	2 Bedroom	Studio	Residential	1095 sq ft	657 sq ft	Unfurnished
+20	$2,500	Tobago	3 Bedroom	Apartment	Residential	1100 sq ft	660 sq ft	Unfurnished
+21	$2,500	Port of Spain	1 Bedroom	Studio	Residential	1105 sq ft	663 sq ft	Fully Furnished
+22	$3,500	San Fernando	2 Bedroom	Apartment	Residential	1110 sq ft	666 sq ft	Unfurnished
+23	$3,400	Arima	3 Bedroom	Studio	Residential	1115 sq ft	669 sq ft	Unfurnished
+24	$740	Chaguanas	1 Bedroom	Apartment	Residential	1120 sq ft	672 sq ft	Fully Furnished
+25	$750	Curepe	2 Bedroom	Studio	Residential	1125 sq ft	675 sq ft	Unfurnished
+26	$760	St. Augustine	3 Bedroom	Apartment	Residential	1130 sq ft	678 sq ft	Unfurnished
+27	$770	Diego Martin	1 Bedroom	Studio	Residential	1135 sq ft	681 sq ft	Fully Furnished
+28	$780	Maraval	2 Bedroom	Apartment	Residential	1140 sq ft	684 sq ft	Unfurnished
+29	$790	Tunapuna	3 Bedroom	Studio	Residential	1145 sq ft	687 sq ft	Unfurnished
+30	$800	Trincity	1 Bedroom	Apartment	Residential	1150 sq ft	690 sq ft	Fully Furnished
+31	$810	Point Fortin	2 Bedroom	Studio	Residential	1155 sq ft	693 sq ft	Unfurnished
+32	$820	Mayaro	3 Bedroom	Apartment	Residential	1160 sq ft	696 sq ft	Unfurnished
+33	$830	Sangre Grande	1 Bedroom	Studio	Residential	1165 sq ft	699 sq ft	Fully Furnished
+34	$840	Couva	2 Bedroom	Apartment	Residential	1170 sq ft	702 sq ft	Unfurnished
+35	$850	Princes Town	3 Bedroom	Studio	Residential	1175 sq ft	705 sq ft	Unfurnished
+36	$860	Rio Claro	1 Bedroom	Apartment	Residential	1180 sq ft	708 sq ft	Fully Furnished
+37	$870	Gasparillo	2 Bedroom	Studio	Residential	1185 sq ft	711 sq ft	Unfurnished
+38	$880	Barrackpore	3 Bedroom	Apartment	Residential	1190 sq ft	714 sq ft	Unfurnished
+39	$890	Caroni	1 Bedroom	Studio	Residential	1195 sq ft	717 sq ft	Fully Furnished
+40	$900	Tobago	2 Bedroom	Apartment	Residential	1200 sq ft	720 sq ft	Unfurnished
+41	$910	Port of Spain	3 Bedroom	Studio	Residential	1205 sq ft	723 sq ft	Unfurnished
+42	$920	San Fernando	1 Bedroom	Apartment	Residential	1210 sq ft	726 sq ft	Fully Furnished
+43	$930	Arima	2 Bedroom	Studio	Residential	1215 sq ft	729 sq ft	Unfurnished
+44	$940	Chaguanas	3 Bedroom	Apartment	Residential	1220 sq ft	732 sq ft	Unfurnished
+45	$950	Curepe	1 Bedroom	Studio	Residential	1225 sq ft	735 sq ft	Fully Furnished
+46	$960	St. Augustine	2 Bedroom	Apartment	Residential	1230 sq ft	738 sq ft	Unfurnished
+47	$970	Diego Martin	3 Bedroom	Studio	Residential	1235 sq ft	741 sq ft	Unfurnished
+48	$980	Maraval	1 Bedroom	Apartment	Residential	1240 sq ft	744 sq ft	Fully Furnished
+49	$990	Tunapuna	2 Bedroom	Studio	Residential	1245 sq ft	747 sq ft	Unfurnished
+50	$1000	Trincity	3 Bedroom	Apartment	Residential	1250 sq ft	750 sq ft	Unfurnished
+51	$1010	Point Fortin	1 Bedroom	Studio	Residential	1255 sq ft	753 sq ft	Fully Furnished
+52	$1020	Mayaro	2 Bedroom	Apartment	Residential	1260 sq ft	756 sq ft	Unfurnished
+53	$1030	Sangre Grande	3 Bedroom	Studio	Residential	1265 sq ft	759 sq ft	Unfurnished
+54	$1040	Couva	1 Bedroom	Apartment	Residential	1270 sq ft	762 sq ft	Fully Furnished
+55	$1050	Princes Town	2 Bedroom	Studio	Residential	1275 sq ft	765 sq ft	Unfurnished
+56	$1060	Rio Claro	3 Bedroom	Apartment	Residential	1280 sq ft	768 sq ft	Unfurnished
+57	$1070	Gasparillo	1 Bedroom	Studio	Residential	1285 sq ft	771 sq ft	Fully Furnished
+58	$1080	Barrackpore	2 Bedroom	Apartment	Residential	1290 sq ft	774 sq ft	Unfurnished
+59	$1090	Caroni	3 Bedroom	Studio	Residential	1295 sq ft	777 sq ft	Unfurnished
+60	$1100	Tobago	1 Bedroom	Apartment	Residential	1300 sq ft	780 sq ft	Fully Furnished
+61	$1110	Port of Spain	2 Bedroom	Studio	Residential	1305 sq ft	783 sq ft	Unfurnished
+62	$1120	San Fernando	3 Bedroom	Apartment	Residential	1310 sq ft	786 sq ft	Unfurnished
+63	$1130	Arima	1 Bedroom	Studio	Residential	1315 sq ft	789 sq ft	Fully Furnished
+64	$1140	Chaguanas	2 Bedroom	Apartment	Residential	1320 sq ft	792 sq ft	Unfurnished
+65	$1150	Curepe	3 Bedroom	Studio	Residential	1325 sq ft	795 sq ft	Unfurnished
+66	$1160	St. Augustine	1 Bedroom	Apartment	Residential	1330 sq ft	798 sq ft	Fully Furnished
+67	$1170	Diego Martin	2 Bedroom	Studio	Residential	1335 sq ft	801 sq ft	Unfurnished
+68	$1180	Maraval	3 Bedroom	Apartment	Residential	1340 sq ft	804 sq ft	Unfurnished
+69	$1190	Tunapuna	1 Bedroom	Studio	Residential	1345 sq ft	807 sq ft	Fully Furnished
+70	$1200	Trincity	2 Bedroom	Apartment	Residential	1350 sq ft	810 sq ft	Unfurnished
+71	$1210	Point Fortin	3 Bedroom	Studio	Residential	1355 sq ft	813 sq ft	Unfurnished
+72	$1220	Mayaro	1 Bedroom	Apartment	Residential	1360 sq ft	816 sq ft	Fully Furnished
+73	$1230	Sangre Grande	2 Bedroom	Studio	Residential	1365 sq ft	819 sq ft	Unfurnished
+74	$1240	Couva	3 Bedroom	Apartment	Residential	1370 sq ft	822 sq ft	Unfurnished
+75	$1250	Princes Town	1 Bedroom	Studio	Residential	1375 sq ft	825 sq ft	Fully Furnished
+76	$1260	Rio Claro	2 Bedroom	Apartment	Residential	1380 sq ft	828 sq ft	Unfurnished
+77	$1270	Gasparillo	3 Bedroom	Studio	Residential	1385 sq ft	831 sq ft	Unfurnished
+78	$1280	Barrackpore	1 Bedroom	Apartment	Residential	1390 sq ft	834 sq ft	Fully Furnished
+79	$1290	Caroni	2 Bedroom	Studio	Residential	1395 sq ft	837 sq ft	Unfurnished
+80	$1300	Tobago	3 Bedroom	Apartment	Residential	1400 sq ft	840 sq ft	Unfurnished
+81	$1310	Port of Spain	1 Bedroom	Studio	Residential	1405 sq ft	843 sq ft	Fully Furnished
+82	$1320	San Fernando	2 Bedroom	Apartment	Residential	1410 sq ft	846 sq ft	Unfurnished
+83	$1330	Arima	3 Bedroom	Studio	Residential	1415 sq ft	849 sq ft	Unfurnished
+84	$1340	Chaguanas	1 Bedroom	Apartment	Residential	1420 sq ft	852 sq ft	Fully Furnished
+85	$1350	Curepe	2 Bedroom	Studio	Residential	1425 sq ft	855 sq ft	Unfurnished
+86	$1360	St. Augustine	3 Bedroom	Apartment	Residential	1430 sq ft	858 sq ft	Unfurnished
+87	$1370	Diego Martin	1 Bedroom	Studio	Residential	1435 sq ft	861 sq ft	Fully Furnished
+88	$1380	Maraval	2 Bedroom	Apartment	Residential	1440 sq ft	864 sq ft	Unfurnished
+89	$1390	Tunapuna	3 Bedroom	Studio	Residential	1445 sq ft	867 sq ft	Unfurnished
+90	$1400	Trincity	1 Bedroom	Apartment	Residential	1450 sq ft	870 sq ft	Fully Furnished
+91	$1410	Point Fortin	2 Bedroom	Studio	Residential	1455 sq ft	873 sq ft	Unfurnished
+92	$1420	Mayaro	3 Bedroom	Apartment	Residential	1460 sq ft	876 sq ft	Unfurnished
+93	$1430	Sangre Grande	1 Bedroom	Studio	Residential	1465 sq ft	879 sq ft	Fully Furnished
+94	$1440	Couva	2 Bedroom	Apartment	Residential	1470 sq ft	882 sq ft	Unfurnished
+95	$1450	Princes Town	3 Bedroom	Studio	Residential	1475 sq ft	885 sq ft	Unfurnished
+96	$1460	Rio Claro	1 Bedroom	Apartment	Residential	1480 sq ft	888 sq ft	Fully Furnished
+97	$1470	Gasparillo	2 Bedroom	Studio	Residential	1485 sq ft	891 sq ft	Unfurnished
+98	$1480	Barrackpore	3 Bedroom	Apartment	Residential	1490 sq ft	894 sq ft	Unfurnished
+99	$1490	Caroni	1 Bedroom	Studio	Residential	1495 sq ft	897 sq ft	Fully Furnished
+100	$1500	Tobago	2 Bedroom	Apartment	Residential	1500 sq ft	900 sq ft	Unfurnished

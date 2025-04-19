@@ -1,6 +1,5 @@
-{% extends "layout.html" %} {% block title %}RentAway{% endblock %} {% block
-page %}RentAway{% endblock %} {{ super() }} {% block content %} {% if
-is_authenticated %}
+{% extends "layout.html" %} {% block title %}{% endblock %} {% block page %}{%
+endblock %} {{ super() }} {% block content %} {% if is_authenticated %}
 <p>Welcome {{current_user.username}}</p>
 {% endif %}
 <p></p>
