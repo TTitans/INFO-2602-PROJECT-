@@ -27,16 +27,56 @@ class User(db.Model):
 class Property(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)
-    description = db.Column(db.String(120), nullable=False)
-    price = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Float, nullable=False)
     city = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(120), nullable=False)
     rooms = db.Column(db.Integer, nullable=False)
-    type = db.Column(db.String(120), nullable=False)
+    bathrooms = db.Column(db.Integer, nullable=False)
     property_type = db.Column(db.String(120), nullable=False)
-    LandArea = db.Column(db.Integer, nullable=False)
-    floorArea = db.Column(db.Integer, nullable=False)
-    furnish = db.Column(db.Boolean, default=False)
+    area = db.Column(db.Float, nullable=False)
+    furnished = db.Column(db.Boolean, default=False)
+    amenities = db.Column(db.Text, nullable=True)
+    landlord_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    landlord = db.relationship('User', backref='properties')
+    reviews = db.relationship('Review', backref='property', lazy=True)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    
+    def get_json(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'price': self.price,
+            'city': self.city,
+            'address': self.address,
+            'rooms': self.rooms,
+            'bathrooms': self.bathrooms,
+            'property_type': self.property_type,
+            'area': self.area,
+            'furnished': self.furnished,
+            'amenities': self.amenities,
+            'landlord': self.landlord.username
+        }
+
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    rating = db.Column(db.Integer, nullable=False)
+    comment = db.Column(db.Text, nullable=False)
+    property_id = db.Column(db.Integer, db.ForeignKey('property.id'), nullable=False)
+    tenant_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    tenant = db.relationship('User', backref='reviews')
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    
+    def get_json(self):
+        return {
+            'id': self.id,
+            'rating': self.rating,
+            'comment': self.comment,
+            'property_id': self.property_id,
+            'tenant': self.tenant.username,
+            'created_at': self.created_at
+        }
 
 
 class Admin(User):
