@@ -9,6 +9,9 @@ search_bp = Blueprint('search_controller', __name__, url_prefix='/search')
 @search_bp.route('/', methods=['GET'])
 def search():
     """Search for apartment listings based on criteria"""
+    from App.controllers.initialize import initialize
+    initialize()  # Ensure amenities exist
+    
     form = SearchForm(request.args, meta={'csrf': False})
     
     query = Listing.query
