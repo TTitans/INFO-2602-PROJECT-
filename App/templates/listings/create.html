@@ -5,14 +5,14 @@
     <h1 class="mb-4">
         <i class="fas fa-plus-circle me-2"></i>Create Listing
     </h1>
-    
+
     <div class="row">
         <div class="col-lg-8">
             <div class="card shadow">
                 <div class="card-body p-4">
                     <form method="POST" action="{{ url_for('listing_controller.create') }}">
                         {{ form.hidden_tag() }}
-                        
+
                         <h5 class="mb-3">Basic Information</h5>
                         <div class="mb-3">
                             {{ form.title.label(class="form-label") }}
@@ -27,7 +27,7 @@
                                 {{ form.title(class="form-control") }}
                             {% endif %}
                         </div>
-                        
+
                         <div class="mb-3">
                             {{ form.description.label(class="form-label") }}
                             {% if form.description.errors %}
@@ -42,7 +42,7 @@
                             {% endif %}
                             <div class="form-text">Provide a detailed description of the apartment. Include information about the layout, features, and any unique selling points.</div>
                         </div>
-                        
+
                         <h5 class="mb-3 mt-4">Property Details</h5>
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -58,7 +58,7 @@
                                     {{ form.price(class="form-control", placeholder="0.00") }}
                                 {% endif %}
                             </div>
-                            
+
                             <div class="col-md-6 mb-3">
                                 {{ form.square_feet.label(class="form-label") }}
                                 {% if form.square_feet.errors %}
@@ -73,7 +73,7 @@
                                 {% endif %}
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 {{ form.bedrooms.label(class="form-label") }}
@@ -88,7 +88,7 @@
                                     {{ form.bedrooms(class="form-control") }}
                                 {% endif %}
                             </div>
-                            
+
                             <div class="col-md-6 mb-3">
                                 {{ form.bathrooms.label(class="form-label") }}
                                 {% if form.bathrooms.errors %}
@@ -103,7 +103,7 @@
                                 {% endif %}
                             </div>
                         </div>
-                        
+
                         <h5 class="mb-3 mt-4">Location</h5>
                         <div class="mb-3">
                             {{ form.address.label(class="form-label") }}
@@ -118,7 +118,7 @@
                                 {{ form.address(class="form-control") }}
                             {% endif %}
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 {{ form.city.label(class="form-label") }}
@@ -133,7 +133,7 @@
                                     {{ form.city(class="form-control") }}
                                 {% endif %}
                             </div>
-                            
+
                             <div class="col-md-4 mb-3">
                                 {{ form.state.label(class="form-label") }}
                                 {% if form.state.errors %}
@@ -147,7 +147,7 @@
                                     {{ form.state(class="form-control") }}
                                 {% endif %}
                             </div>
-                            
+
                             <div class="col-md-4 mb-3">
                                 {{ form.zip_code.label(class="form-label") }}
                                 {% if form.zip_code.errors %}
@@ -162,7 +162,7 @@
                                 {% endif %}
                             </div>
                         </div>
-                        
+
                         <h5 class="mb-3 mt-4">Amenities</h5>
                         <div class="mb-4">
                             {% if form.amenities.errors %}
@@ -173,7 +173,7 @@
                                     {% endfor %}
                                 </div>
                             {% endif %}
-                            
+
                             <div class="row">
                                 {% for choice in form.amenities %}
                                     <div class="col-md-4 mb-2">
@@ -185,7 +185,7 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        
+
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a href="{{ url_for('listing_controller.list_apartments') }}" class="btn btn-outline-secondary me-md-2">Cancel</a>
                             {{ form.submit(class="btn btn-primary") }}
@@ -194,7 +194,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-header bg-primary text-white">
