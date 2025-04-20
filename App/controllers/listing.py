@@ -43,34 +43,49 @@ def create():
         return redirect(url_for('index_views.index'))
 
     form = ListingForm()
+    
+    # Get all amenities for the form
+    amenities = Amenity.query.order_by(Amenity.name).all()
+    form.amenities.choices = [(str(a.id), a.name) for a in amenities]
+    
     if form.validate_on_submit():
-        listing = Listing(title=form.title.data,
-                          description=form.description.data,
-                          price=form.price.data,
-                          bedrooms=form.bedrooms.data,
-                          bathrooms=form.bathrooms.data,
-                          square_feet=form.square_feet.data,
-                          address=form.address.data,
-                          city=form.city.data,
-                          state=form.state.data,
-                          zip_code=form.zip_code.data,
-                          owner_id=current_user.id)
+        try:
+            listing = Listing(
+                title=form.title.data,
+                description=form.description.data,
+                price=form.price.data,
+                bedrooms=form.bedrooms.data,
+                bathrooms=form.bathrooms.data,
+                square_feet=form.square_feet.data,
+                address=form.address.data,
+                city=form.city.data,
+                state=form.state.data,
+                zip_code=form.zip_code.data,
+                owner_id=current_user.id
+            )
 
-        # Add selected amenities
-        if form.amenities.data:
-            amenities = Amenity.query.filter(
-                Amenity.id.in_(form.amenities.data)).all()
-            listing.amenities = amenities
+            # Add selected amenities
+            if form.amenities.data:
+                selected_amenities = Amenity.query.filter(
+                    Amenity.id.in_([int(a_id) for a_id in form.amenities.data])
+                ).all()
+                listing.amenities = selected_amenities
 
-        db.session.add(listing)
-        db.session.commit()
+            db.session.add(listing)
+            db.session.commit()
 
-        flash('Listing created successfully!', 'success')
-        return redirect(url_for('listing.detail', apartment_id=listing.id))
+            flash('Listing created successfully!', 'success')
+            return redirect(url_for('listing_controller.detail', apartment_id=listing.id))
+            
+        except Exception as e:
+            db.session.rollback()
+            flash('Error creating listing. Please try again.', 'danger')
+            print(f"Error creating listing: {str(e)}")
 
     return render_template('listings/create.html',
-                           form=form,
-                           title='Create Listing')
+                         form=form,
+                         title='Create Listing',
+                         amenities=amenities)
 
 
 @listing_bp.route('/<int:apartment_id>')
