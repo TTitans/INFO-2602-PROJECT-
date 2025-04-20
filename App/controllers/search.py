@@ -1,9 +1,10 @@
+
 from flask import Blueprint, render_template, request
 from sqlalchemy import or_
 from App.models.user import Listing, Amenity
 from App.forms import SearchForm
 
-search_bp = Blueprint('search', __name__, url_prefix='/search')
+search_bp = Blueprint('search_controller', __name__, url_prefix='/search')
 
 @search_bp.route('/', methods=['GET'])
 def search():
@@ -38,11 +39,15 @@ def search():
         for amenity_id in form.amenities.data:
             query = query.filter(Listing.amenities.any(Amenity.id == amenity_id))
     
+    # Get all amenities for the form
+    amenities = Amenity.query.all()
+    form.amenities.choices = [(str(a.id), a.name) for a in amenities]
+    
     # Get search results
     results = query.order_by(Listing.created_at.desc()).all()
     
     return render_template('listings/search.html', 
-                          form=form, 
-                          results=results, 
-                          total=len(results),
-                          title='Search Results')
+                         form=form, 
+                         results=results, 
+                         total=len(results),
+                         title='Search Results')
