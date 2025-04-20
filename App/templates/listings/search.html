@@ -55,12 +55,16 @@
                 
                 <div class="col-md-6">
                     <label class="form-label">Amenities</label>
-                    <div class="row">
-                        {% for choice in form.amenities %}
-                            <div class="col-md-4 mb-2">
-                                <div class="form-check">
-                                    {{ choice(class="form-check-input") }}
-                                    {{ choice.label(class="form-check-label") }}
+                    <div class="row g-2">
+                        {% for amenity in form.amenities %}
+                            <div class="col-md-4">
+                                <div class="form-check border rounded p-2">
+                                    {{ amenity(class="form-check-input") }}
+                                    <label class="form-check-label d-flex align-items-center" for="{{ amenity.id }}">
+                                        {% set amenity_obj = amenities|selectattr('id', 'equalto', amenity.data)|first %}
+                                        <i class="fas {{ amenity_obj.icon }} me-2"></i>
+                                        {{ amenity.label.text }}
+                                    </label>
                                 </div>
                             </div>
                         {% endfor %}

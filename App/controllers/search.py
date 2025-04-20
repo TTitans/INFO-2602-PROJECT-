@@ -50,4 +50,5 @@ def search():
                          form=form, 
                          results=results, 
                          total=len(results),
+                         amenities=amenities,
                          title='Search Results')
