@@ -1,0 +1,226 @@
+[33mcommit 1860dac364b692519f09d2d9b0501e881cba92ea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Mon Apr 21 10:34:23 2025 +0000
+
+    Restored to 'c95e23786bf0e995ab37e327a174d2239ba36855'
+    
+    Replit-Restored-To: c95e23786bf0e995ab37e327a174d2239ba36855
+
+[33mcommit da837f3895e48192c7f0a3548a0ebfae4820ec83[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Mon Apr 21 10:33:10 2025 +0000
+
+    Assistant checkpoint: Implement login changes, verification, and image uploads
+    
+    Assistant generated file changes:
+    - App/forms.py: Change login form to use username, Add TenantVerificationForm, Add image upload to ListingForm
+    - App/templates/auth/login.html: Update login form to use username
+    - App/controllers/auth.py: Update login logic to use username and add default credentials, Add tenant verification functionality
+    - App/models/user.py: Add image fields to Listing model
+    
+    ---
+    
+    User prompt:
+    
+    all and don't forget the add images we discussed
+    
+    Replit-Commit-Author: Assistant
+    Replit-Commit-Session-Id: 00fdc240-2637-4e1d-abd3-f7660cde0688
+
+[33mcommit c95e23786bf0e995ab37e327a174d2239ba36855[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sun Apr 20 05:52:14 2025 +0000
+
+    updated
+
+[33mcommit c6f45fcb2b9a9c8196bd15783b8ac2df32111882[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sun Apr 20 00:48:08 2025 +0000
+
+    updated
+    
+    updated
+    
+    User prompt:
+    
+    werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'listing.list_apartments'. Did you mean 'listing_controller.list_apartments' instead? now fix this error  and the amenitities on the listing page also needs to be fixed
+    
+    Replit-Commit-Author: eking
+    Replit-Commit-Session-Id: 07f51bc2-4334-4f88-be7c-942ffbb5c120
+
+[33mcommit 5aed209b8b1dc7f224ebb105af100b586dfb13b2[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sun Apr 20 00:44:36 2025 +0000
+
+    upd
+
+[33mcommit 9714ad5e73363520096cf5e356871fc79f90d901[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sun Apr 20 00:36:45 2025 +0000
+
+    up
+
+[33mcommit aafa013b10bc53baac8d2bb2db4af67b8ab3aa63[m
+Author: ekingsservices <31592170-ekingsservices@users.noreply.replit.com>
+Date:   Sun Apr 20 00:35:55 2025 +0000
+
+    up
+
+[33mcommit b05c37125d0642d2b143eeaa38b0ee888d944dfb[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sun Apr 20 00:13:56 2025 +0000
+
+    up
+
+[33mcommit fd4a5edf5e55d57574cebc89c9a8f7c2509d31ec[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sun Apr 20 00:11:21 2025 +0000
+
+    up
+
+[33mcommit a05b42cc51646488eadd02bcd55b8e621f17942e[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sun Apr 20 00:06:21 2025 +0000
+
+    upd
+
+[33mcommit 3315542713e8a38f3a704e0476559f82a2bf8f5b[m
+Author: ekingsservices <31592170-ekingsservices@users.noreply.replit.com>
+Date:   Sun Apr 20 00:06:06 2025 +0000
+
+    up
+
+[33mcommit 3a5c7d01bcbdf9988a4e58c47671d3369d58c21d[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sat Apr 19 23:58:30 2025 +0000
+
+    up
+
+[33mcommit 4ce1b46e4da6c909042c06212e5d10251466f539[m
+Author: ekingsservices <31592170-ekingsservices@users.noreply.replit.com>
+Date:   Sat Apr 19 23:57:37 2025 +0000
+
+    up
+
+[33mcommit b3f628553704f969536bec3ce0c9091661c6c764[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sat Apr 19 23:49:08 2025 +0000
+
+    upd
+
+[33mcommit 0b519ff34f088d4834495025919f18686aaeb4f3[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sat Apr 19 23:47:29 2025 +0000
+
+    up
+
+[33mcommit e39069efa045bbd9bdb277585259689f0e8b51ed[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sat Apr 19 23:43:37 2025 +0000
+
+    upd
+
+[33mcommit 9d5be6a2236902cd4e33e8c6e7ebab21196874ee[m
+Author: ekingsservices <31592170-ekingsservices@users.noreply.replit.com>
+Date:   Sat Apr 19 23:43:00 2025 +0000
+
+    up
+
+[33mcommit c781ee7adb313104841496f2e43071edd7effd5e[m
+Author: ekingsservices <31592170-ekingsservices@users.noreply.replit.com>
+Date:   Sat Apr 19 21:17:57 2025 +0000
+
+    up
+
+[33mcommit 75cd24a6e1a39ae09535d119298385f03d88735c[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sat Apr 19 21:16:52 2025 +0000
+
+    up
+
+[33mcommit 7af77ff86d442539a9d7a03c12ff26e0d203b349[m
+Author: ekingsservices <31592170-ekingsservices@users.noreply.replit.com>
+Date:   Sat Apr 19 21:15:12 2025 +0000
+
+    up
+
+[33mcommit a2c1225cad31b1eb1d87dc0335a6a7f57daeb312[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sat Apr 19 18:31:18 2025 +0000
+
+    yeat
+
+[33mcommit 3cda30ad0d4f2089401225b9e7d850ecbbe069f7[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Sat Apr 19 18:30:58 2025 +0000
+
+    upd
+
+[33mcommit f302d303fe786de022ff9fe0c53f7195d9e45030[m
+Author: ekingsservices <31592170-ekingsservices@users.noreply.replit.com>
+Date:   Sat Apr 19 18:29:30 2025 +0000
+
+    up
+
+[33mcommit 7c23ffe248c15e3b512872c8ace28a844498580b[m
+Author: muiEking <97762151+muiEking@users.noreply.github.com>
+Date:   Thu Apr 17 20:16:05 2025 +0000
+
+    getting started
+
+[33mcommit 0e2ba1f6bb749dc92830873ae318130a8d1ed01b[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Thu Sep 19 21:59:46 2024 +0000
+
+    updated user model
+
+[33mcommit 6722476738e5a5e75f4a56c2c1c3261039584eb6[m
+Merge: 67c8bcb afa6a07
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Thu Sep 19 17:34:01 2024 -0400
+
+    Merge pull request #35 from uwidcit/Snickdx-patch-3
+    
+    Update readme.md
+
+[33mcommit afa6a0742ff6c061aa6fed97b575bde252d4e91b[m[33m ([m[1;31morigin/Snickdx-patch-3[m[33m)[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Thu Sep 19 17:33:42 2024 -0400
+
+    Update readme.md
+
+[33mcommit 67c8bcb543bbafc4462bb8fedf7dc22085389c55[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Fri Apr 19 13:59:23 2024 +0000
+
+    updaqted defaul
+
+[33mcommit bfc03b4c40526f40214a57c07a9b0e5263e91fc5[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Fri Apr 19 13:49:30 2024 +0000
+
+    added admin
+
+[33mcommit a250a11156fa5840f33fb020a6c9e89ea4dc7b0b[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Fri Apr 19 12:23:50 2024 +0000
+
+    unified initializer
+
+[33mcommit c84f0adfeffb63dc1806b8543b89457db710d022[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Thu Mar 28 01:43:07 2024 +0000
+
+    updated config
+
+[33mcommit cfba65552bf15abc11dfe617be11f466d8e370b0[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Wed Mar 27 21:42:04 2024 +0000
+
+    added dockerfile
+
+[33mcommit be33160d752b2db8ea03b24da55b904511621d92[m
+Author: Nicholas Mendez <snickdx@gmail.com>
+Date:   Mon Mar 11 17:27:39 2024 -0400
+
+    Update requirements.txt

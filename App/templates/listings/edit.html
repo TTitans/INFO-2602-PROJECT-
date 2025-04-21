@@ -1,0 +1,63 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Edit Listing</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        <div class="mb-3">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.description.label(class="form-label") }}
+            {{ form.description(class="form-control") }}
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form.price.label(class="form-label") }}
+                {{ form.price(class="form-control") }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form.square_feet.label(class="form-label") }}
+                {{ form.square_feet(class="form-control") }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                {{ form.bedrooms.label(class="form-label") }}
+                {{ form.bedrooms(class="form-control") }}
+            </div>
+            <div class="col-md-6 mb-3">
+                {{ form.bathrooms.label(class="form-label") }}
+                {{ form.bathrooms(class="form-control") }}
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.address.label(class="form-label") }}
+            {{ form.address(class="form-control") }}
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                {{ form.city.label(class="form-label") }}
+                {{ form.city(class="form-control") }}
+            </div>
+            <div class="col-md-4 mb-3">
+                {{ form.state.label(class="form-label") }}
+                {{ form.state(class="form-control") }}
+            </div>
+            <div class="col-md-4 mb-3">
+                {{ form.zip_code.label(class="form-label") }}
+                {{ form.zip_code(class="form-control") }}
+            </div>
+        </div>
+        <div class="mb-3">
+            {{ form.amenities.label(class="form-label") }}
+            {{ form.amenities(class="form-select", multiple=True) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update Listing</button>
+        <a href="{{ url_for('listing_controller.detail', apartment_id=listing.id) }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
