@@ -14,20 +14,23 @@ app = create_app()
 migrate = get_migrate(app)
 
 
-# This command creates and initializes the database
 @app.cli.command("init", help="Creates and initializes the database")
 def init():
     initialize()
     db.drop_all()
     db.create_all()
-    bob = User('bob', 'bobpass')
-    print(bob)
-    print('database intialized')
 
+    bob = User('bob', 'bob@example.com', 'bobpass',
+               'landlord')  # Ensure you pass all required fields
+    db.session.add(bob)
 
-'''
-User Commands
-'''
+    john = User('johnny', 'johnny@gmail.com', 'johnnpass', 'tenant')
+    john.is_verified = True
+    db.session.add(john)
+
+    db.session.commit()
+    print('Database initialized with users: Bob and John')
+
 
 # Commands can be organized using groups
 
