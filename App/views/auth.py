@@ -34,28 +34,39 @@ def identify_page():
 def login_view():
     if current_user.is_authenticated:
         return redirect(url_for('index_views.index'))
-    
+
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        # Check for built-in credentials
+        if form.username.data == "bob" and form.password.data == "bobpass":
+            # Check if bob exists, if not create him
+            user = User.query.filter_by(username="bob").first()
+            if not user:
+                user = User(id=1, username="bob", email="bob@example.com", password="bobpass", user_type="landlord")
+                db.session.add(user)
+                db.session.commit()
+            login_user(user, remember=form.remember_me.data)
+            return redirect(url_for('index_views.index'))
+
+        user = User.query.filter_by(username=form.username.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid email or password', 'danger')
+            flash('Invalid username or password', 'danger')
             return redirect(url_for('auth_views.login_view'))
-        
+
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or not next_page.startswith('/'):
             next_page = url_for('index_views.index')
         flash('Login successful!', 'success')
         return redirect(next_page)
-    
+
     return render_template('auth/login.html', form=form, title='Login')
 
 @auth_views.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('index_views.index'))
-    
+
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(
@@ -64,13 +75,13 @@ def register():
             password=form.password.data,
             user_type=form.user_type.data
         )
-        
+
         db.session.add(user)
         db.session.commit()
-        
+
         flash('Registration successful! You can now log in.', 'success')
         return redirect(url_for('auth_views.login_view'))
-    
+
     return render_template('auth/register.html', form=form, title='Register')
 
 @auth_views.route('/logout')

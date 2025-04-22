@@ -60,7 +60,12 @@ def setup_login_manager(app):
     
     @login_manager.user_loader
     def load_user(user_id):
-        return User.query.get(int(user_id))
+        if user_id is not None:
+            try:
+                return User.query.get(int(user_id))
+            except (ValueError, TypeError):
+                return None
+        return None
     
     return login_manager
 

@@ -1,9 +1,13 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, abort
+
+from flask import Blueprint, render_template, redirect, url_for, flash, request, abort, current_app
 from flask_login import current_user, login_required
 from App.database import db
 from App.models.user import Listing, Amenity, User
 from App.forms import ListingForm
 from datetime import datetime
+import os
+from werkzeug.utils import secure_filename
+import uuid
 
 listing_bp = Blueprint('listing_controller', __name__, url_prefix='/listings')
 
@@ -75,7 +79,7 @@ def create():
             db.session.commit()
 
             flash('Listing created successfully!', 'success')
-            return redirect(url_for('listing_controller.detail', apartment_id=listing.id))
+            return redirect(url_for('index_views.index'))
             
         except Exception as e:
             db.session.rollback()
@@ -133,7 +137,7 @@ def edit(apartment_id):
         db.session.commit()
 
         flash('Listing updated successfully!', 'success')
-        return redirect(url_for('listing.detail', apartment_id=listing.id))
+        return redirect(url_for('index_views.index'))
 
     # Pre-select the current amenities
     form.amenities.data = [amenity.id for amenity in listing.amenities]

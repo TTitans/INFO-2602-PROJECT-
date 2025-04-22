@@ -1,3 +1,4 @@
+
 from datetime import datetime
 from sqlalchemy import Integer, Float, String, Text, Boolean, DateTime, ForeignKey
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -28,7 +29,7 @@ class User(UserMixin, db.Model):
         self.username = username
         self.email = email
         self.user_type = user_type
-        self.is_verified = user_type == 'landlord'  # Auto-verify landlords for now
+        self.is_verified = user_type == 'tenants'  # just for now nah
         self.set_password(password)
 
     def get_json(self):

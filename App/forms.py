@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange
 from App.models.user import User
 
 class LoginForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Log In')
@@ -27,7 +27,12 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
+from flask_wtf.file import FileField, FileAllowed
+
 class ListingForm(FlaskForm):
+    images = FileField('Images', validators=[
+        FileAllowed(['jpg', 'png', 'jpeg'], 'Images only!')
+    ])
     title = StringField('Title', validators=[DataRequired(), Length(max=120)])
     description = TextAreaField('Description', validators=[DataRequired()])
     price = FloatField('Monthly Rent ($)', validators=[DataRequired(), NumberRange(min=0)])
